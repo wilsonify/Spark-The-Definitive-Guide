@@ -1,3 +1,4 @@
+from pyspark.shell import spark
 person = spark.createDataFrame([
     (0, "Bill Chambers", 0, [100]),
     (1, "Matei Zaharia", 1, [500, 250, 100]),

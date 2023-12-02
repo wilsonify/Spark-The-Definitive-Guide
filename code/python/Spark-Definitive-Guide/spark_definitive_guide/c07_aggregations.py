@@ -1,3 +1,4 @@
+from pyspark.shell import spark
 df = spark.read.format("csv")\
   .option("header", "true")\
   .option("inferSchema", "true")\

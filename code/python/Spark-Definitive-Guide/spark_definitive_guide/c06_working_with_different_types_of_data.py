@@ -1,3 +1,4 @@
+from pyspark.shell import spark
 df = spark.read.format("csv")\
   .option("header", "true")\
   .option("inferSchema", "true")\
@@ -328,11 +329,12 @@ jsonDF = spark.range(1).selectExpr("""
 
 # COMMAND ----------
 
-from pyspark.sql.functions import get_json_object, json_tuple
+from pyspark.sql.functions import col, get_json_object, json_tuple
 
 jsonDF.select(
-    get_json_object(col("jsonString"), "$.myJSONKey.myJSONValue[1]") as "column",
-    json_tuple(col("jsonString"), "myJSONKey")).show(2)
+    get_json_object(col("jsonString"), "$.myJSONKey.myJSONValue[1]").alias("column"),
+    json_tuple(col("jsonString"), "myJSONKey")
+).show(2)
 
 
 # COMMAND ----------
