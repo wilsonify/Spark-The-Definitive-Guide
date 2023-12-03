@@ -1,0 +1,7 @@
+FROM bde2020/spark-worker:3.0.1-hadoop3.2
+WORKDIR /opt/spark/jars
+RUN wget -q https://repo.maven.apache.org/maven2/org/apache/hadoop/hadoop-aws/3.2.0/hadoop-aws-3.2.0.jar
+RUN wget -q https://repo.maven.apache.org/maven2/software/amazon/awssdk/bom/2.15.0/bom-2.15.0.pom
+RUN wget -q https://repo.maven.apache.org/maven2/software/amazon/awssdk/s3/2.15.0/s3-2.15.0.jar
+COPY spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+WORKDIR /
